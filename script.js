@@ -38,15 +38,15 @@ function openLetter() {
 }
 
 const photos = [
-    "photos/photo1.jpg",
-    "photos/photo2.jpg",
-    "photos/photo3.jpg",
-    "photos/photo4.jpg",
-    "photos/photo5.jpg",
-    "photos/photo6.jpg",
-    "photos/photo7.jpg",
-    "photos/photo8.jpg",
-    "photos/photo9.jpg"
+    "photo1.jpg",
+    "photo2.jpg",
+    "photo3.jpg",
+    "photo4.jpg",
+    "photo5.jpg",
+    "photo6.jpg",
+    "photo7.jpg",
+    "photo8.jpg",
+    "photo9.jpg"
 ];
 
 let current = 0;
