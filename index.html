@@ -30,11 +30,20 @@ body {
 .active { display: flex; }
 
 /* ================= BACKGROUND ================= */
-#lockScreen {
-  background: linear-gradient(135deg,#0f0010,#2b001f,#000);
-  overflow: hidden;
-}
+<div id="lockScreen" class="screen active">
+  <div class="glass-card">
+    <div class="lock-icon">🔒</div>
 
+    <h1 class="title">Secret Surprise</h1>
+    <p class="subtitle">Enter password to unlock</p>
+
+    <input type="password" id="password" placeholder="••••••••">
+
+    <button onclick="checkPassword()">Unlock Gift 🎁</button>
+
+    <div class="hint">💡 Hint: It’s a special date</div>
+  </div>
+</div>
 /* floating hearts background */
 .heart {
   position: absolute;
