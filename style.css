@@ -93,7 +93,7 @@ button {
   position: absolute;
   width: 200%;
   height: 200%;
-  background: url("https://i.imgur.com/3QKXz3b.png");
+  background: url("bg.jpg");
   opacity: 0.08;
   animation: moveBg 20s linear infinite;
 }
