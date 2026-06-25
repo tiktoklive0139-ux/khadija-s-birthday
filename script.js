@@ -10,7 +10,7 @@ function checkPassword() {
         setTimeout(() => {
             document.getElementById("loadingScreen").classList.remove("active");
             document.getElementById("welcomeScreen").classList.add("active");
-        }, 3000);
+        }, 2500);
     } else {
         alert("Wrong Password ❤️");
     }
@@ -20,15 +20,13 @@ function showGallery() {
     document.getElementById("welcomeScreen").classList.remove("active");
     document.getElementById("galleryScreen").classList.add("active");
 
-    const music = document.getElementById("bgMusic");
-    if (music) {
-        music.play();
-    }
+    let music = document.getElementById("bgMusic");
+    if (music) music.play();
 
     if (typeof confetti === "function") {
         confetti({
-            particleCount: 200,
-            spread: 180,
+            particleCount: 150,
+            spread: 120,
             origin: { y: 0.6 }
         });
     }
@@ -63,27 +61,27 @@ setInterval(() => {
 
 setInterval(() => {
     const heart = document.createElement("div");
-    heart.classList.add("heart");
     heart.innerHTML = "❤️";
+    heart.style.position = "fixed";
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (20 + Math.random() * 25) + "px";
+    heart.style.bottom = "0px";
+    heart.style.fontSize = "20px";
+    heart.style.opacity = "0.8";
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}, 500);
+    setTimeout(() => heart.remove(), 5000);
+}, 400);
 
 function updateCountdown() {
     const birthday = new Date("July 5, 2026 00:00:00").getTime();
     const now = new Date().getTime();
-    const distance = birthday - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let diff = birthday - now;
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    const countdown = document.getElementById("countdown");
+    let countdown = document.getElementById("countdown");
     if (countdown) {
-        countdown.innerHTML = "🎂 " + days + " Days Left Until Your Birthday";
+        countdown.innerHTML = `🎂 ${days} Days Left`;
     }
 }
 
