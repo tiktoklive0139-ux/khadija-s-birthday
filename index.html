@@ -5,47 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Surprise ❤️</title>
 
-<link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/* ================= SCREEN ================= */
+.screen {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+.active { display: flex; }
+
+/* ================= BACKGROUND ================= */
+#lockScreen {
+  background: linear-gradient(135deg,#0f0010,#2b001f,#000);
+  overflow: hidden;
+}
+
+/* floating hearts background */
+.heart {
+  position: absolute;
+  color: #ff4da6;
+  animation: floatUp 6s linear infinite;
+  font-size: 18px;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(1); opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+}
+
+/* ================= GLASS CARD ================= */
+.card {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 20px;
+  width: 85%;
+  max-width: 320px;
+  box-shadow: 0 0 30px rgba(255,77,166,0.3);
+}
+
+/* ================= INPUT ================= */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  text-align: center;
+  outline: none;
+}
+
+/* ================= BUTTON ================= */
+button {
+  margin-top: 12px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg,#ff4da6,#ff2e8a);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* ================= LOADING ================= */
+#loadingScreen {
+  background: #120010;
+}
+
+/* animated dots */
+#loadingScreen h1::after {
+  content: "...";
+  animation: dots 1s infinite;
+}
+
+@keyframes dots {
+  0% { content: "."; }
+  50% { content: ".."; }
+  100% { content: "..."; }
+}
+
+/* ================= WELCOME ================= */
+#welcomeScreen {
+  background: linear-gradient(135deg,#1a0015,#3b0030);
+}
+
+/* ================= SLIDESHOW ================= */
+#slideshow {
+  width: 90%;
+  max-width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,77,166,0.5);
+}
+
+/* ================= LETTER ================= */
+#letterScreen {
+  background: #120010;
+  padding: 20px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- LOCK -->
 <div id="lockScreen" class="screen active">
-  <h1>🔒 Secret Surprise</h1>
-  <input type="password" id="password" placeholder="Enter Password">
-  <button onclick="checkPassword()">Open Gift 🎁</button>
+  <div class="card">
+    <h2>🔒 Secret Surprise</h2>
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="checkPassword()">Unlock 🎁</button>
+  </div>
 </div>
 
 <!-- LOADING -->
 <div id="loadingScreen" class="screen">
-  <h1>Loading... ❤️</h1>
+  <h1>Loading</h1>
 </div>
 
 <!-- WELCOME -->
 <div id="welcomeScreen" class="screen">
   <h1>Happy Birthday ❤️</h1>
-  <p>Welcome to your special surprise</p>
   <button onclick="showGallery()">Open Surprise 🎉</button>
 </div>
 
 <!-- GALLERY -->
 <div id="galleryScreen" class="screen">
-  <img id="slideshow" src="photo1.jpg">
-  <h2>Memories ❤️</h2>
+  <img id="slideshow" src="">
   <button onclick="openLetter()">Read Letter 💌</button>
 </div>
 
 <!-- LETTER -->
 <div id="letterScreen" class="screen">
-  <h1>💌 Letter</h1>
-  <p>
-    You are my special person ❤️<br><br>
-    Forever grateful for you...
-  </p>
+  <h2>💌 Special Letter</h2>
+  <p>You are my favorite person ❤️</p>
 </div>
 
-<script src="script.js"></script>
+<script>
+const password = "5225";
+
+/* ================= SCREEN SWITCH ================= */
+function showScreen(id){
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+/* ================= PASSWORD ================= */
+function checkPassword(){
+  const val = document.getElementById("password").value;
+
+  if(val === password){
+    showScreen("loadingScreen");
+
+    setTimeout(()=>{
+      showScreen("welcomeScreen");
+      confetti();
+    },2000);
+  } else {
+    alert("Wrong Password ❤️");
+  }
+}
+
+/* ================= SLIDES ================= */
+const photos = [
+  "photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg"
+];
+
+let i = 0;
+
+function startSlideshow(){
+  const img = document.getElementById("slideshow");
+  img.src = photos[0];
+
+  setInterval(()=>{
+    i = (i+1)%photos.length;
+    img.src = photos[i];
+  },2500);
+}
+
+/* ================= NAV ================= */
+function showGallery(){
+  showScreen("galleryScreen");
+  startSlideshow();
+}
+
+function openLetter(){
+  showScreen("letterScreen");
+}
+
+/* ================= HEARTS ================= */
+setInterval(()=>{
+  const heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.className = "heart";
+  heart.style.left = Math.random()*100+"vw";
+  heart.style.top = "100vh";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+},300);
+</script>
+
 </body>
 </html>
