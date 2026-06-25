@@ -80,3 +80,43 @@ button {
   position: relative;
   z-index: 2;
 }
+
+#lockScreen {
+  background: radial-gradient(circle at top, #ff2e8a, #2b001f, #000);
+  position: relative;
+  overflow: hidden;
+}
+
+/* glowing hearts background */
+#lockScreen::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: url("https://i.imgur.com/3QKXz3b.png");
+  opacity: 0.08;
+  animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-50%,-50%); }
+}
+
+/* glow effect title */
+#lockScreen h1 {
+  font-size: 2.2rem;
+  text-shadow: 0 0 20px #ff4da6, 0 0 40px #ff2e8a;
+}
+
+/* button premium look */
+#lockScreen button {
+  background: linear-gradient(45deg, #ff4da6, #ff2e8a);
+  box-shadow: 0 0 20px #ff4da6;
+  transition: 0.3s;
+}
+
+#lockScreen button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #ff2e8a;
+}
