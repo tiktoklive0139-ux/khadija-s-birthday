@@ -1,5 +1,6 @@
 const password = "5225";
 
+/* ================= PASSWORD ================= */
 function checkPassword() {
     let userPass = document.getElementById("password").value;
 
@@ -16,11 +17,12 @@ function checkPassword() {
     }
 }
 
+/* ================= GALLERY ================= */
 function showGallery() {
     document.getElementById("welcomeScreen").classList.remove("active");
     document.getElementById("galleryScreen").classList.add("active");
 
-    let music = document.getElementById("bgMusic");
+    const music = document.getElementById("bgMusic");
     if (music) music.play();
 
     if (typeof confetti === "function") {
@@ -32,11 +34,14 @@ function showGallery() {
     }
 }
 
+/* ================= LETTER ================= */
 function openLetter() {
     document.getElementById("galleryScreen").classList.remove("active");
     document.getElementById("letterScreen").classList.add("active");
 }
 
+/* ================= AUTO IMAGE FIX ================= */
+/* IMPORTANT: اگر images root میں ہیں تو یہ استعمال کرو */
 const photos = [
     "photo1.jpg",
     "photo2.jpg",
@@ -51,35 +56,50 @@ const photos = [
 
 let current = 0;
 
-setInterval(() => {
+function startSlideshow() {
     const slide = document.getElementById("slideshow");
-    if (slide) {
+
+    if (!slide) return;
+
+    setInterval(() => {
         current = (current + 1) % photos.length;
+
+        slide.onerror = function () {
+            // اگر image missing ہو تو crash نہیں کرے گا
+            console.log("Image missing:", photos[current]);
+        };
+
         slide.src = photos[current];
-    }
-}, 3000);
+    }, 3000);
+}
 
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.innerHTML = "❤️";
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.bottom = "0px";
-    heart.style.fontSize = "20px";
-    heart.style.opacity = "0.8";
-    document.body.appendChild(heart);
+/* ================= HEARTS ================= */
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0px";
+        heart.style.fontSize = "20px";
+        heart.style.opacity = "0.8";
+        heart.style.pointerEvents = "none";
 
-    setTimeout(() => heart.remove(), 5000);
-}, 400);
+        document.body.appendChild(heart);
 
+        setTimeout(() => heart.remove(), 5000);
+    }, 400);
+}
+
+/* ================= COUNTDOWN ================= */
 function updateCountdown() {
     const birthday = new Date("July 5, 2026 00:00:00").getTime();
     const now = new Date().getTime();
 
-    let diff = birthday - now;
-    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const diff = birthday - now;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    let countdown = document.getElementById("countdown");
+    const countdown = document.getElementById("countdown");
     if (countdown) {
         countdown.innerHTML = `🎂 ${days} Days Left`;
     }
@@ -87,3 +107,9 @@ function updateCountdown() {
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
+
+/* ================= START EVERYTHING ================= */
+window.onload = function () {
+    startSlideshow();
+    startHearts();
+};
