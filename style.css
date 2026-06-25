@@ -120,3 +120,39 @@ button {
   transform: scale(1.05);
   box-shadow: 0 0 30px #ff2e8a;
 }
+#loadingScreen {
+  background: linear-gradient(135deg, #0f0010, #2b001f);
+}
+
+/* animated dots */
+#loadingScreen h1::after {
+  content: " ...";
+  animation: dots 1s infinite;
+}
+
+@keyframes dots {
+  0% { content: "."; }
+  50% { content: ".."; }
+  100% { content: "..."; }
+}
+#welcomeScreen {
+  background: linear-gradient(135deg, #1a0015, #3b0030);
+}
+
+#welcomeScreen h1 {
+  font-size: 2.4rem;
+  color: #ffb3d9;
+  text-shadow: 0 0 25px #ff4da6;
+}
+#slideshow {
+  width: 90%;
+  max-width: 350px;
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(255, 77, 166, 0.6);
+  transform: scale(1);
+  transition: 0.5s;
+}
+
+#slideshow:hover {
+  transform: scale(1.03);
+}
