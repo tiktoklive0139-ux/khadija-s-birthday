@@ -3,72 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Mrs Siraj ❤️</title>
+<title>Birthday Surprise ❤️</title>
+
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
+
+<!-- LOCK SCREEN -->
 <div id="lockScreen" class="screen active">
-<h1>🔒 Secret Birthday Surprise</h1>
-<input type="password" id="password" placeholder="Enter Password">
-<button onclick="checkPassword()"> 
-Open Gift 🎁 
-</button>
+  <h1>🔒 Secret Surprise</h1>
+  <input type="password" id="password" placeholder="Enter Password">
+  <button onclick="checkPassword()">Open Gift 🎁</button>
 </div>
+
+<!-- LOADING -->
 <div id="loadingScreen" class="screen">
-<h1>Loading Something Special For You ❤️</h1>
+  <h1>Loading... ❤️</h1>
 </div>
+
+<!-- WELCOME -->
 <div id="welcomeScreen" class="screen">
-<h1>Happy Birthday Mrs Siraj 😭❤️</h1>
-<h2 id="countdown"></h2>
-<p>
-My Dearest Khadija Siraj ❤️
-<br><br>
-You are the most beautiful part of my life.
-<br><br>
-Thank you for being my happiness,
-my peace,
-and my forever.
-</p>
-<button onclick="showGallery()">
-Open My Surprise ❤️
-</button>
+  <h1>Happy Birthday ❤️</h1>
+  <p>Welcome to your special surprise</p>
+  <button onclick="showGallery()">Open Surprise 🎉</button>
 </div>
+
+<!-- GALLERY -->
 <div id="galleryScreen" class="screen">
-<img id="slideshow" src="photos/photo1.jpg">
-<h2>Khadija Siraj ❤️</h2>
-<p>
-You are my happiness,
-my peace,
-and my forever ❤️
-</p>
-<button onclick="openLetter()">
-Read My Letter 💌
-</button>
+  <img id="slideshow" src="photos/photo1.jpg">
+  <h2>Memories ❤️</h2>
+  <button onclick="openLetter()">Read Letter 💌</button>
 </div>
+
+<!-- LETTER -->
 <div id="letterScreen" class="screen">
-<h1>💌 A Letter For You</h1>
-<p>
-
-My Dear Khadija,
-
-You are the most precious gift Allah has given me.
-
-No matter what happens in life,
-I will always choose you again and again.
-
-Thank you for being my partner,
-my best friend,
-and my forever love.
-
-Happy Birthday My Queen ❤️
-
-Forever Yours,
-
-Siraj ❤️
-
-</p>
+  <h1>💌 Letter</h1>
+  <p>
+    You are my special person ❤️<br><br>
+    Forever grateful for you...
+  </p>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
