@@ -52,11 +52,18 @@ function startSlideshow() {
   slide.src = photos[0];
 
   setInterval(() => {
-    current = (current + 1) % photos.length;
-    slide.src = photos[current];
-  }, 2500);
-}
+  const heart = document.createElement("div");
+  heart.innerHTML = "💖";
+  heart.style.position = "fixed";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.top = "100vh";
+  heart.style.fontSize = "20px";
+  heart.style.animation = "floatUp 5s linear";
+  document.body.appendChild(heart);
 
+  setTimeout(() => heart.remove(), 5000);
+400);
+}
 /* ================= GALLERY ================= */
 function showGallery() {
   showScreen("galleryScreen");
